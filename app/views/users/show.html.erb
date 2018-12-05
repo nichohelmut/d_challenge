@@ -1,3 +1,42 @@
-<%= (0...@user.photos.count).each do |photo|%>
-  <%= image_tag(@user.thumbnail(photo)) %>
-<% end %>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');">
+  <div class="banner-content">
+    <div class="wrapper">
+      <% if @user.photos.present? %>
+        <div class="carousel-container">
+          <div class="arrow left-arrow"><i class="fa fa-arrow-circle-left fa-3x"></i></div>
+          <ul class="carousel">
+            <%= @user.photos.each do |photo| %>
+              <li> <%= image_tag(photo) %></li>
+            <% end %>
+          </ul>
+          <div class="arrow right-arrow"><i class="fa fa-arrow-circle-right fa-3x"></i></div>
+        </div>
+      <% else %>
+        <h1>Post Your Pics!</h1>
+      <% end %>
+
+      <%= simple_form_for @user do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="upload-items">
+          <div class="form-inputs">
+            <%= f.file_field :photos, multiple: true %>
+
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, class: 'btn btn-success' %>
+          </div>
+      <% end %>
+
+      </div>
+      <% if @user.photos.present? %>
+        <%= link_to 'Remove All Pictures', user_path(current_user.id),
+            method: :delete,
+            data:   { confirm: 'Are you sure?' },
+            class:  'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+</div>

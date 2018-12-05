@@ -18,6 +18,9 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'mini_magick'
 gem 'jquery-rails'
+gem 'owlcarousel-rails'
+gem 'swiper-rails'
+gem 'image_processing', '~> 1.2'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

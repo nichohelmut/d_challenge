@@ -1,12 +1,16 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<% if user_signed_in? %>
-  <%= link_to 'Upload some Cool Pics!', edit_user_path(current_user.id), class: "btn btn-primary" %>
-
-<% else %>
-  <!-- Login link (when logged out) -->
-  <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "btn btn-primary" %>
-<% end %>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');">
+  <div class="banner-content">
+    <div class="container">
+      <div class="col-sm-offset-4 col-sm-4">
+        <h1>Welcome to your Photo Show</h1>
+        <p>Just Log In and Upload your favorite pictures!</p>
+        <% if user_signed_in? %>
+          <%= link_to 'Upload some Cool Pics!', user_path(current_user.id), class: "btn btn-primary" %>
+        <% else %>
+          <!-- Login link (when logged out) -->
+          <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
