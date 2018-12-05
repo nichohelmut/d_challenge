@@ -1,0 +1,3 @@
+<%= (0...@user.photos.count).each do |photo|%>
+  <%= image_tag(@user.thumbnail(photo)) %>
+<% end %>
